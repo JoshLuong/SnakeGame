@@ -1,0 +1,43 @@
+
+#startPage{
+	position: absolute;
+	top: 5%;
+  	left: 5%;
+  	width: 400px;
+	height: 600px;
+	font-size: 30px;
+	text-shadow: 1px 1px 1px #222;
+	color:#557c3e;
+	text-align: center;
+}
+/*#description, #startButtons{
+	text-align: center;
+}*/
+
+#exit{
+	position: absolute;
+	top: 5%;
+  	left: 40%;
+  	margin: -100px 0 0 -150px;
+}
+#gameOver {
+	
+	width: 600px;
+	height: 600px;
+	font-size: 200px;
+	text-shadow: 1px 1px 1px #222;
+	color:#DC143C;
+
+}
+
+#snakeIMG{
+	position: absolute;
+	top: 20%;
+  	left: 80%;
+}
+#creator{
+	text-align: center;
+	size: 50px;
+	color:#557c3e;
+}
+

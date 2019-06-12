@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+	<html>
+    <head>
+        <title>Snake Game</title>
+        <style>
+            canvas{
+                display: block;
+                margin: 0 auto;
+            }
+        </style>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <canvas id="snake" width="608" height="608"></canvas>
+    <script src="snake.js"></script>
+
+    <body>
+    	<div id="container">
+    <!-- 	start page -->
+	    	<div id="startPage">
+	    		<h1>Welcome to the SNAKE GAME!</h1>
+	    		<p id="description">Please choose the level of difficulty: beginners or skilled</p>
+
+	    		<div id="startButtons">
+	    			<button onclick="startEasyMode()">Beginners!</button>
+	    			<button onclick="startHardMode()">Skilled!</button>
+
+	    		</div>
+
+
+	    	</div>
+
+	    	<img id="snakeIMG" src="img/snake.png" width="200" height="200">
+	    	<div id="exit">
+	    		<h1 id="gameOver"></h1>
+	    	</div>
+	    	<h2 id="creator">Created by: Joshua Luong</h2>
+
+    	</div><!--  end container -->
+
+    </body>
+</html>
+
