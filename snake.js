@@ -1,11 +1,12 @@
-// 
 
 const cvs = document.getElementById("snake");
 const ctx = cvs.getContext("2d");
 
+
 let game;
 let badAppleMove;
-
+// variable for setting new max score
+var isdifficultyEasy = true;
 // create the unit
 const box = 32;
 
@@ -20,25 +21,6 @@ foodImg.src = "img/food.png";
 const blackApple = new Image();
 blackApple.src = "img/badApple.png";
 
-// const badAppleImg = new Image();
-// foodImg.src = "img/food.png";
-
-
-// load audio files
-
-let dead = new Audio();
-// let eat = new Audio();
-// let up = new Audio();
-// let right = new Audio();
-// let left = new Audio();
-// let down = new Audio();
-
-dead.src = "audio/dead.mp3";
-// eat.src = "audio/eat.mp3";
-// up.src = "audio/up.mp3";
-// right.src = "audio/right.mp3";
-// left.src = "audio/left.mp3";
-// down.src = "audio/down.mp3";
 
 // BAD APPLE
 
@@ -107,10 +89,27 @@ function collision(head,array){
 }
 
 function gameOverScreen(){
+	if (typeof(Storage)!== "undefined"){
+		if (isdifficultyEasy){
+		var curMax = Math.max(localStorage.getItem("easyMaxScore"), score);
+		localStorage.setItem("easyMaxScore", curMax);
+	}
+	else{
+		var curMax = Math.max(localStorage.getItem("hardMaxScore"), score);
+		localStorage.setItem("hardMaxScore", curMax);
+	}
+	}
+	else{
+		localStorage.setItem("easyMaxScore", 0);
+		localStorage.setItem("hardMaxScore", 0);
+	}
+	document.getElementById("Skilled player's max score").innerHTML = "SKILLED MAX SCORE:" +localStorage.getItem("hardMaxScore");
+	document.getElementById("Beginner player's max score").innerHTML = "BEGINNERS MAX SCORE:" +localStorage.getItem("easyMaxScore");
 	clearInterval(game);
     clearInterval(badAppleMove);
 	document.getElementById("gameOver").innerHTML = "GAME OVER!";
 }
+
 
 function moveTimer()
 {
@@ -134,10 +133,7 @@ function moveTimer()
    badApple.y = badApple.y + ySpeed;
 
    
-   console.log(badApple.y);
-   console.log(badApple.x);
-   console.log("snake Y" +snakeY);
-   console.log("snake X"+snakeX);
+  
    // check for collisions
 
    if ((snakeX < badApple.x+20) && (snakeX +20> badApple.x) && (snakeY < badApple.y+20) && (snakeY+20 > badApple.y)){
@@ -149,7 +145,9 @@ function moveTimer()
 
 // draw everything to the canvas
 function draw(){
-    
+	document.getElementById("score_title").innerHTML = "Can you beat these scores...?";
+	document.getElementById("Beginner player's max score").innerHTML = "BEGINNERS MAX SCORE: " +localStorage.getItem("easyMaxScore");
+    document.getElementById("Skilled player's max score").innerHTML = "SKILLED MAX SCORE: " +localStorage.getItem("hardMaxScore");
     ctx.drawImage(ground,0,0);
     
     for( let i = 0; i < snake.length ; i++){
@@ -217,17 +215,19 @@ function draw(){
 // call draw function every 100 ms
 
 function startEasyMode() {	
-  //document.getElementById(startPage).innerHTML = "";
-  document.getElementById("startPage").style.display = "none";
-  game = setInterval(draw,100);
-  
-}
-function startHardMode() {	
-  //document.getElementById(startPage).innerHTML = "";
-  document.getElementById("startPage").style.display = "none";
+   document.getElementById("startPage").style.display = "none";
    document.getElementById("snakeIMG").style.display = "none";
   game = setInterval(draw,100);
-  badAppleMove = setInterval(moveTimer,100);
   
 }
-// let game = setInterval(draw,100);
+
+// hard mode adds the bad apple in the interval 
+function startHardMode() {	
+ isdifficultyEasy =false;		
+  document.getElementById("startPage").style.display = "none";
+  document.getElementById("snakeIMG").style.display = "none";
+  game = setInterval(draw,100);
+  badAppleMove = setInterval(moveTimer,100);
+
+  
+}

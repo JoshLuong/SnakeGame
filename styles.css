@@ -10,9 +10,6 @@
 	color:#557c3e;
 	text-align: center;
 }
-/*#description, #startButtons{
-	text-align: center;
-}*/
 
 #exit{
 	position: absolute;
@@ -25,7 +22,7 @@
 	width: 600px;
 	height: 600px;
 	font-size: 200px;
-	text-shadow: 1px 1px 1px #222;
+	text-shadow: 20px 20px 20px #222;
 	color:#DC143C;
 
 }
@@ -39,5 +36,14 @@
 	text-align: center;
 	size: 50px;
 	color:#557c3e;
+}
+#scores{
+	font-size: 20px;
+	color:#DC143C;
+	text-align: center;
+}
+#scores, #score_title{
+	font-size: 25px;
+	text-shadow: 1px 1px 1px #222;
 }
 
