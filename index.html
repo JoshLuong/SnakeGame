@@ -3,50 +3,44 @@
 	<html>
     <head>
         <title>Snake Game</title>
-        <style>
+      <!--   <style>
             canvas{
                 display: block;
                 margin: 0 auto;
             }
-        </style>
+        </style> -->
         <link rel="stylesheet" href="styles.css">
+        <link href="https://fonts.googleapis.com/css?family=Amatic+SC&display=swap" rel="stylesheet">
     </head>
-    <canvas id="snake" width="608" height="608"></canvas>
-    <script src="snake.js"></script>
+    <!-- <canvas id="snake" width="608" height="608"></canvas> -->
+    <!-- <script src="snake.js"></script> -->
 
     <body>
-    	<div id="container">
+    	<section id="container">
+    		<div id="background"></div>
+    		
     <!-- 	start page -->
 	    	<div id="startPage">
 	    		<h1>Welcome to the SNAKE GAME!</h1>
 	    		<p id="description">Please choose the level of difficulty:</p>
 
 	    		<div id="startButtons">
-	    			<button onclick="startEasyMode()">Beginners!</button>
-	    			<button onclick="startHardMode()">Skilled!</button>
+	    			<a href="gamePageSkilled.html">Skilled!</a>
+	    			<a href="gamePageEasy.html">Beginners!</a>
 
 	    		</div>
 
-
+	    		<h2 id="creatorHome">Created by: Joshua Luong</h2>
 	    	</div>
 
-	    	<img id="snakeIMG" src="img/snake.png" width="200" height="200">
-	    	<div id="exit">
-	    		<h1 id="gameOver"></h1>
-	    	</div>
+	    	<!-- <img id="snakeIMG" src="img/snake.png" width="200" height="200"> -->
 	    	
-	    	<div id="scores">
-	    		<h2 id = "score_title"></h2>
-	    		<h2 id="Beginner player's max score"></h2>
-	    		<h2 id="Skilled player's max score"></h2>
-	    	</div>
-	    	<h2 id="creator">Created by: Joshua Luong</h2>
+	    	
 
 	    	
 
 
-    	</div><!--  end container -->
+    	</section><!--  end container -->
 
     </body>
 </html>
-

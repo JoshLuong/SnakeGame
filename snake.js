@@ -87,29 +87,37 @@ function collision(head,array){
     }
     return false;
 }
+function updateScores(){
+if (typeof(Storage)!== "undefined"){
+    if (isdifficultyEasy){
+    var curMax = Math.max(localStorage.getItem("easyMaxScore"), score);
+    localStorage.setItem("easyMaxScore", curMax);
+  }
+  else{
+    var curMax = Math.max(localStorage.getItem("hardMaxScore"), score);
+    localStorage.setItem("hardMaxScore", curMax);
+  }
+  }
+  else{
+    localStorage.setItem("easyMaxScore", 0);
+    localStorage.setItem("hardMaxScore", 0);
+  }
+  if (isdifficultyEasy){
+
+  document.getElementById("Beginner player's max score").innerHTML = "BEGINNERS MAX SCORE:" +localStorage.getItem("easyMaxScore");
+  }
+  else{
+  document.getElementById("Skilled player's max score").innerHTML = "SKILLED MAX SCORE:" +localStorage.getItem("hardMaxScore");
+    }
+}
+
 
 function gameOverScreen(){
-	if (typeof(Storage)!== "undefined"){
-		if (isdifficultyEasy){
-		var curMax = Math.max(localStorage.getItem("easyMaxScore"), score);
-		localStorage.setItem("easyMaxScore", curMax);
-	}
-	else{
-		var curMax = Math.max(localStorage.getItem("hardMaxScore"), score);
-		localStorage.setItem("hardMaxScore", curMax);
-	}
-	}
-	else{
-		localStorage.setItem("easyMaxScore", 0);
-		localStorage.setItem("hardMaxScore", 0);
-	}
-	document.getElementById("Skilled player's max score").innerHTML = "SKILLED MAX SCORE:" +localStorage.getItem("hardMaxScore");
-	document.getElementById("Beginner player's max score").innerHTML = "BEGINNERS MAX SCORE:" +localStorage.getItem("easyMaxScore");
+	updateScores();
 	clearInterval(game);
     clearInterval(badAppleMove);
 	document.getElementById("gameOver").innerHTML = "GAME OVER!";
 }
-
 
 function moveTimer()
 {
@@ -145,9 +153,9 @@ function moveTimer()
 
 // draw everything to the canvas
 function draw(){
-	document.getElementById("score_title").innerHTML = "Can you beat these scores...?";
-	document.getElementById("Beginner player's max score").innerHTML = "BEGINNERS MAX SCORE: " +localStorage.getItem("easyMaxScore");
-    document.getElementById("Skilled player's max score").innerHTML = "SKILLED MAX SCORE: " +localStorage.getItem("hardMaxScore");
+	  //document.getElementById("Beginner player's max score").innerHTML = "BEGINNERS HIGH SCORE: " +localStorage.getItem("easyMaxScore");
+   // document.getElementById("Skilled player's max score").innerHTML = "SKILLED HIGH SCORE: " +localStorage.getItem("hardMaxScore");
+   updateScores();
     ctx.drawImage(ground,0,0);
     
     for( let i = 0; i < snake.length ; i++){
@@ -215,19 +223,20 @@ function draw(){
 // call draw function every 100 ms
 
 function startEasyMode() {	
-   document.getElementById("startPage").style.display = "none";
-   document.getElementById("snakeIMG").style.display = "none";
+ //  document.getElementById("startPage").style.display = "none";
+ //  document.getElementById("snakeIMG").style.display = "none";
   game = setInterval(draw,100);
   
 }
 
 // hard mode adds the bad apple in the interval 
 function startHardMode() {	
+  console.log("hi");
  isdifficultyEasy =false;		
-  document.getElementById("startPage").style.display = "none";
-  document.getElementById("snakeIMG").style.display = "none";
+ // document.getElementById("startPage").style.display = "none";
+ // document.getElementById("snakeIMG").style.display = "none";
   game = setInterval(draw,100);
   badAppleMove = setInterval(moveTimer,100);
-
+  
   
 }
